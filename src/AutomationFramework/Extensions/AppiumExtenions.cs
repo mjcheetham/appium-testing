@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Threading;
 
-namespace Mjcheetham.AppiumTesting.Automation
+namespace Mjcheetham.AppiumTesting
 {
     public static class AppiumExtenions
     {

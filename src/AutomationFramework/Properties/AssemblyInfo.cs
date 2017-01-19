@@ -1,3 +1,3 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Mjcheetham.AppiumTesting.AutomationFramework")]
+[assembly: AssemblyTitle("AutomationFramework")]

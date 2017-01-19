@@ -1,4 +1,4 @@
-﻿namespace Mjcheetham.AppiumTesting.Automation.Configuration
+﻿namespace Mjcheetham.AppiumTesting.Configuration
 {
     interface ISecretProvider
     {

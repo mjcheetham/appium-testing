@@ -7,8 +7,8 @@
     <ProjectGuid>{41F8F7E9-317C-456A-BBE7-EC584B183560}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mjcheetham.AppiumTesting.Automation</RootNamespace>
-    <AssemblyName>Mjcheetham.AppiumTesting.AutomationFramework</AssemblyName>
+    <RootNamespace>Mjcheetham.AppiumTesting</RootNamespace>
+    <AssemblyName>AutomationFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -79,11 +79,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppModel\IApp.cs" />
+    <Compile Include="AppModel\IPage.cs" />
+    <Compile Include="Configuration\DeviceConfiguration.cs" />
     <Compile Include="Configuration\FileSecretProvider.cs" />
     <Compile Include="Configuration\LocalCertificateProvider.cs" />
     <Compile Include="Configuration\ICertificateProvider.cs" />
     <Compile Include="Configuration\ISecretProvider.cs" />
     <Compile Include="Extensions\AppiumExtenions.cs" />
+    <Compile Include="Extensions\ConfigurationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

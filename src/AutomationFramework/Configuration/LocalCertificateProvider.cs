@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace Mjcheetham.AppiumTesting.Automation.Configuration
+namespace Mjcheetham.AppiumTesting.Configuration
 {
     class LocalCertificateProvider : ICertificateProvider
     {

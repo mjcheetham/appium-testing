@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Mjcheetham.AppiumTesting.Automation.Configuration
+namespace Mjcheetham.AppiumTesting.Configuration
 {
     class FileSecretProvider : ISecretProvider
     {
