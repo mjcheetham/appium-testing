@@ -83,7 +83,7 @@
     <Compile Include="Configuration\LocalCertificateProvider.cs" />
     <Compile Include="Configuration\ICertificateProvider.cs" />
     <Compile Include="Configuration\ISecretProvider.cs" />
-    <Compile Include="Extensions\AppiumDriverExtenions.cs" />
+    <Compile Include="Extensions\AppiumExtenions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

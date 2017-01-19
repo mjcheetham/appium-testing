@@ -1,27 +1,25 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
+﻿using Appium.Interfaces.Generic.SearchContext;
+using OpenQA.Selenium;
 using System;
 using System.Threading;
 
 namespace Mjcheetham.AppiumTesting.Automation
 {
-    public static class AppiumDriverExtenions
+    public static class AppiumExtenions
     {
         private static readonly TimeSpan DefaultElementWaitTimeout = TimeSpan.FromMilliseconds(15000);
         private static readonly TimeSpan DefaultElementPollingInterval = TimeSpan.FromMilliseconds(1000);
 
-        public static W WaitForElement<W>(this AppiumDriver<W> appiumDriver, By by)
-            where W : IWebElement
+        public static IWebElement WaitForElement(this ISearchContext appiumSearchContext, By by)
         {
-            return WaitForElement(appiumDriver, by, DefaultElementWaitTimeout, DefaultElementPollingInterval);
+            return WaitForElement(appiumSearchContext, by, DefaultElementWaitTimeout, DefaultElementPollingInterval);
         }
 
-        public static W WaitForElement<W>(this AppiumDriver<W> appiumDriver, By by, TimeSpan timeout, TimeSpan pollingInterval)
-            where W : IWebElement
+        public static IWebElement WaitForElement(this ISearchContext appiumSearchContext, By by, TimeSpan timeout, TimeSpan pollingInterval)
         {
-            if (appiumDriver == null)
+            if (appiumSearchContext == null)
             {
-                throw new ArgumentNullException(nameof(appiumDriver));
+                throw new ArgumentNullException(nameof(appiumSearchContext));
             }
 
             if (by == null)
@@ -34,7 +32,7 @@ namespace Mjcheetham.AppiumTesting.Automation
             {
                 try
                 {
-                    return appiumDriver.FindElement(by);
+                    return appiumSearchContext.FindElement(by);
                 }
                 catch (Exception)
                 {
