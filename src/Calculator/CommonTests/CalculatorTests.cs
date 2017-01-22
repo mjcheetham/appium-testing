@@ -11,10 +11,10 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
 
         public CalculatorTests()
         {
-            string jsonConfig = @"{
+            string windowsJson = @"{
     ""platform"": ""windows"",
     ""automationServerUrl"": ""http://127.0.0.1:4723/"",
-    ""commandTimeout"": 10000,
+    ""commandTimeout"": 60000,
     ""elementSearchTimeout"": 5000,
     ""capabilities"": {
         ""app"": ""Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"",
@@ -22,10 +22,23 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
         ""deviceName"": ""WindowsPC"",
     }
 }";
-            DeviceConfiguration config = JsonConvert.DeserializeObject<DeviceConfiguration>(jsonConfig);
-
+            string iosJson = @"{
+    ""platform"": ""ios"",
+    ""automationServerUrl"": ""http://192.168.0.24:4723/wd/hub/"",
+    ""commandTimeout"": 300000,
+    ""elementSearchTimeout"": 5000,
+    ""capabilities"": {
+        ""bundleId"": ""com.apple.calendar"",
+        ""platformName"": ""iOS"",
+        ""deviceName"": ""iPhone 6"",
+        ""automationName"": ""XCUITest""
+    }
+}";
             var appBuilder = new CalculatorAppBuilder();
-            app = appBuilder.Build(config);
+            DeviceConfiguration windowsConfig = JsonConvert.DeserializeObject<DeviceConfiguration>(windowsJson);
+            DeviceConfiguration iosConfig = JsonConvert.DeserializeObject<DeviceConfiguration>(iosJson);
+
+            app = appBuilder.Build(iosConfig);
 
             app.SwitchMode(CalculatorMode.Standard);
         }
