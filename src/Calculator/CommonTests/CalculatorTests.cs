@@ -1,46 +1,21 @@
-﻿using Mjcheetham.AppiumTesting.Configuration;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using Xunit;
 
 namespace Mjcheetham.AppiumTesting.Calculator.Tests
 {
-    public class CalculatorTests : IDisposable
+    public class CalculatorTests : IClassFixture<CalculatorAppBuilder>, IDisposable
     {
         private readonly ICalculatorApp app;
 
-        public CalculatorTests()
+        public CalculatorTests(CalculatorAppBuilder appBuilder)
         {
-            string windowsJson = @"{
-    ""platform"": ""windows"",
-    ""automationServerUrl"": ""http://127.0.0.1:4723/"",
-    ""commandTimeout"": 60000,
-    ""elementSearchTimeout"": 5000,
-    ""capabilities"": {
-        ""app"": ""Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"",
-        ""platformName"": ""Windows"",
-        ""deviceName"": ""WindowsPC"",
-    }
-}";
-            string iosJson = @"{
-    ""platform"": ""ios"",
-    ""automationServerUrl"": ""http://192.168.0.24:4723/wd/hub/"",
-    ""commandTimeout"": 300000,
-    ""elementSearchTimeout"": 5000,
-    ""capabilities"": {
-        ""bundleId"": ""com.apple.calendar"",
-        ""platformName"": ""iOS"",
-        ""deviceName"": ""iPhone 6"",
-        ""automationName"": ""XCUITest""
-    }
-}";
-            var appBuilder = new CalculatorAppBuilder();
-            DeviceConfiguration windowsConfig = JsonConvert.DeserializeObject<DeviceConfiguration>(windowsJson);
-            DeviceConfiguration iosConfig = JsonConvert.DeserializeObject<DeviceConfiguration>(iosJson);
+            app = appBuilder.AddJsonConfiguration("config.windows.json")
+                            .Build();
 
-            app = appBuilder.Build(iosConfig);
-
-            app.SwitchMode(CalculatorMode.Standard);
+            if (app.GetCurrentMode() != CalculatorMode.Standard)
+            {
+                app.SwitchMode(CalculatorMode.Standard);
+            }
         }
 
         [Fact]

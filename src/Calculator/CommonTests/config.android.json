@@ -1,0 +1,10 @@
+﻿{
+  "platform": "android",
+  "automationServerUrl": "http://127.0.0.1:4723/wd/hub/",
+  "commandTimeout": 60000,
+  "elementSearchTimeout": 5000,
+  "capabilities": {
+    "app": "com.apple.calculator",
+    "platformName": "Android"
+  }
+}

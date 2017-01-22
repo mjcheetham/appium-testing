@@ -7,7 +7,7 @@ namespace Mjcheetham.AppiumTesting.AppModel.Windows
 {
     public abstract class UwpApp : App
     {
-        public UwpApp(DeviceConfiguration config)
+        public UwpApp(IConfiguration config)
         {
             this.Driver = new WindowsDriver<IWebElement>(config.AutomationServerUrl, config.DesiredCapabilties(), config.CommandTimeout);
             this.Driver.Manage().Timeouts().ImplicitlyWait(config.ElementSearchTimeout);

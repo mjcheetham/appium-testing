@@ -7,7 +7,7 @@ namespace Mjcheetham.AppiumTesting.AppModel.Android
 {
     public abstract class AndroidApp : App
     {
-        public AndroidApp(DeviceConfiguration config)
+        public AndroidApp(IConfiguration config)
         {
             this.Driver = new AndroidDriver<IWebElement>(config.AutomationServerUrl, config.DesiredCapabilties(), config.CommandTimeout);
             this.Driver.Manage().Timeouts().ImplicitlyWait(config.ElementSearchTimeout);

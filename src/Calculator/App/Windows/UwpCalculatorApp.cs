@@ -11,7 +11,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Windows
         private const string ScientificModeMenuLabel = "Scientific Calculator";
         private const string ScientificModeHeaderLabel = "SCIENTITIC Calculator mode";
 
-        public UwpCalculatorApp(DeviceConfiguration config) : base(config)
+        public UwpCalculatorApp(IConfiguration config) : base(config)
         {
             this.StandardPage = new UwpCalculatorStandardPage(this);
         }

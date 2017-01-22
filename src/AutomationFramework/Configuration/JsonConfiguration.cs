@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 namespace Mjcheetham.AppiumTesting.Configuration
 {
     [JsonObject(MemberSerialization.Fields)]
-    public class DeviceConfiguration
+    public class JsonConfiguration : IConfiguration
     {
         #region JSON fields
         #pragma warning disable CS0649
@@ -26,8 +26,10 @@ namespace Mjcheetham.AppiumTesting.Configuration
         [JsonProperty("elementSearchTimeout")]
         private int? elementSearchTimeout;
 
-        #pragma warning restore CS0649
+#pragma warning restore CS0649
         #endregion
+
+        #region IConfiguration
 
         public Uri AutomationServerUrl
         {
@@ -79,5 +81,7 @@ namespace Mjcheetham.AppiumTesting.Configuration
                 }
             }
         }
+
+        #endregion
     }
 }

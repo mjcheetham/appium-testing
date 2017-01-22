@@ -1,0 +1,12 @@
+﻿{
+  "platform": "ios",
+  "automationServerUrl": "http://192.168.0.24:4723/wd/hub/",
+  "commandTimeout": 300000,
+  "elementSearchTimeout": 5000,
+  "capabilities": {
+    "bundleId": "com.apple.calculator",
+    "platformName": "iOS",
+    "deviceName": "iPhone 6",
+    "automationName": "XCUITest"
+  }
+}

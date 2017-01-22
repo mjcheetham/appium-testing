@@ -6,7 +6,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Android
 {
     public class AndroidCalculatorApp : AndroidApp, ICalculatorApp
     {
-        public AndroidCalculatorApp(DeviceConfiguration config) : base(config)
+        public AndroidCalculatorApp(IConfiguration config) : base(config)
         {
             this.StandardPage = new AndroidCalculatorStandardPage(this);
         }

@@ -1,0 +1,11 @@
+﻿{
+  "platform": "windows",
+  "automationServerUrl": "http://127.0.0.1:4723/",
+  "commandTimeout": 60000,
+  "elementSearchTimeout": 5000,
+  "capabilities": {
+    "app": "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App",
+    "platformName": "Windows",
+    "deviceName": "WindowsPC"
+  }
+}

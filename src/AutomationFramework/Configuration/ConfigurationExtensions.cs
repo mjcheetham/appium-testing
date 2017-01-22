@@ -5,7 +5,7 @@ namespace Mjcheetham.AppiumTesting.Configuration
 {
     public static class ConfigurationExtensions
     {
-        public static DesiredCapabilities DesiredCapabilties(this DeviceConfiguration config)
+        public static DesiredCapabilities DesiredCapabilties(this IConfiguration config)
         {
             if (config == null)
             {

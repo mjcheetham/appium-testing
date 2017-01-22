@@ -85,8 +85,9 @@
     <Compile Include="AppModel\Page.cs" />
     <Compile Include="AppModel\iOS\IosApp.cs" />
     <Compile Include="AppModel\Windows\UwpApp.cs" />
-    <Compile Include="Configuration\DeviceConfiguration.cs" />
+    <Compile Include="Configuration\JsonConfiguration.cs" />
     <Compile Include="Configuration\FileSecretProvider.cs" />
+    <Compile Include="Configuration\IConfiguration.cs" />
     <Compile Include="Configuration\LocalCertificateProvider.cs" />
     <Compile Include="Configuration\ICertificateProvider.cs" />
     <Compile Include="Configuration\ISecretProvider.cs" />

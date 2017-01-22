@@ -6,7 +6,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.iOS
 {
     public class IosCalculatorApp : IosApp, ICalculatorApp
     {
-        public IosCalculatorApp(DeviceConfiguration config) : base(config)
+        public IosCalculatorApp(IConfiguration config) : base(config)
         {
             this.StandardPage = new IosCalculatorStandardPage(this);
         }

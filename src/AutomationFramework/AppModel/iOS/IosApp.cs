@@ -7,7 +7,7 @@ namespace Mjcheetham.AppiumTesting.AppModel.iOS
 {
     public abstract class IosApp : App
     {
-        public IosApp(DeviceConfiguration config)
+        public IosApp(IConfiguration config)
         {
             this.Driver = new IOSDriver<IWebElement>(config.AutomationServerUrl, config.DesiredCapabilties(), config.CommandTimeout);
             this.Driver.Manage().Timeouts().ImplicitlyWait(config.ElementSearchTimeout);
