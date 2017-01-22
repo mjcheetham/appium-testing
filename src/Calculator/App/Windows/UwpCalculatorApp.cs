@@ -1,33 +1,24 @@
-﻿using Mjcheetham.AppiumTesting.Configuration;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Windows;
+﻿using Mjcheetham.AppiumTesting.AppModel.Windows;
+using Mjcheetham.AppiumTesting.Configuration;
 using System;
 
-namespace Mjcheetham.AppiumTesting.Calculator.Uwp
+namespace Mjcheetham.AppiumTesting.Calculator.Windows
 {
-    public class UwpCalculatorApp : ICalculatorApp
+    public class UwpCalculatorApp : UwpApp, ICalculatorApp
     {
         private const string StandardModeMenuLabel = "Standard Calculator";
         private const string StandardModeHeaderLabel = "STANDARD Calculator mode";
         private const string ScientificModeMenuLabel = "Scientific Calculator";
         private const string ScientificModeHeaderLabel = "SCIENTITIC Calculator mode";
 
-        private readonly UwpCalculatorStandardPage standardPage;
-
-        public UwpCalculatorApp(DeviceConfiguration config)
+        public UwpCalculatorApp(DeviceConfiguration config) : base(config)
         {
-            this.Driver = new WindowsDriver<IWebElement>(config.AutomationServerUrl, config.DesiredCapabilties(), config.CommandTimeout);
-            this.Driver.Manage().Timeouts().ImplicitlyWait(config.ElementSearchTimeout);
-
-            this.standardPage = new UwpCalculatorStandardPage(this);
+            this.StandardPage = new UwpCalculatorStandardPage(this);
         }
 
         #region ICalculatorApp
 
-        public AppiumDriver<IWebElement> Driver { get; }
-
-        public ICalculatorStandardPage StandardPage => this.standardPage;
+        public ICalculatorStandardPage StandardPage { get; }
 
         public void PressAppMenuButton()
         {
@@ -70,31 +61,6 @@ namespace Mjcheetham.AppiumTesting.Calculator.Uwp
                     throw new ArgumentException("Unknown mode");
             }
             this.Driver.FindElementByXPath($"//ListItem[@Name=\"{buttonLabel}\"]").Click();
-        }
-
-        #endregion
-
-        #region IDisposable
-
-        private bool isDisposed;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!isDisposed)
-            {
-                if (disposing)
-                {
-                    this.Driver?.Close();
-                }
-
-                this.isDisposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         #endregion

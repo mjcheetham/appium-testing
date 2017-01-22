@@ -1,8 +1,7 @@
-﻿using Mjcheetham.AppiumTesting.Configuration;
-using OpenQA.Selenium.Remote;
+﻿using OpenQA.Selenium.Remote;
 using System;
 
-namespace Mjcheetham.AppiumTesting
+namespace Mjcheetham.AppiumTesting.Configuration
 {
     public static class ConfigurationExtensions
     {

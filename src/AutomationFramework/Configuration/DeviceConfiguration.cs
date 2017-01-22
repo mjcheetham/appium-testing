@@ -9,9 +9,13 @@ namespace Mjcheetham.AppiumTesting.Configuration
     public class DeviceConfiguration
     {
         #region JSON fields
+        #pragma warning disable CS0649
 
         [JsonProperty("automationServerUrl")]
         private string automationServerUrl;
+
+        [JsonProperty("platform")]
+        private string platform;
 
         [JsonProperty("capabilities")]
         private Dictionary<string, string> capabilities;
@@ -22,6 +26,7 @@ namespace Mjcheetham.AppiumTesting.Configuration
         [JsonProperty("elementSearchTimeout")]
         private int? elementSearchTimeout;
 
+        #pragma warning restore CS0649
         #endregion
 
         public Uri AutomationServerUrl
@@ -54,6 +59,24 @@ namespace Mjcheetham.AppiumTesting.Configuration
                 return this.elementSearchTimeout.HasValue
                     ? TimeSpan.FromMilliseconds(this.elementSearchTimeout.Value)
                     : TimeSpan.Zero;
+            }
+        }
+
+        public PlatformType PlatformType
+        {
+            get
+            {
+                switch (this.platform.ToLowerInvariant())
+                {
+                    case "android":
+                        return PlatformType.Android;
+                    case "ios":
+                        return PlatformType.Ios;
+                    case "windows":
+                        return PlatformType.Windows;
+                    default:
+                        return PlatformType.Unknown;
+                }
             }
         }
     }

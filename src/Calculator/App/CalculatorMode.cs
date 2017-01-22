@@ -4,7 +4,6 @@
     {
         Standard,
         Scientific,
-        Programmer,
-        DateConverter
+        Programmer
     }
 }

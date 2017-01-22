@@ -12,6 +12,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
         public CalculatorTests()
         {
             string jsonConfig = @"{
+    ""platform"": ""windows"",
     ""automationServerUrl"": ""http://127.0.0.1:4723/"",
     ""commandTimeout"": 10000,
     ""elementSearchTimeout"": 5000,
@@ -23,7 +24,8 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
 }";
             DeviceConfiguration config = JsonConvert.DeserializeObject<DeviceConfiguration>(jsonConfig);
 
-            app = new Uwp.UwpCalculatorApp(config);
+            var appBuilder = new CalculatorAppBuilder();
+            app = appBuilder.Build(config);
 
             app.SwitchMode(CalculatorMode.Standard);
         }

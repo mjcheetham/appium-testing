@@ -1,8 +1,6 @@
-﻿using Mjcheetham.AppiumTesting.AppModel;
-
-namespace Mjcheetham.AppiumTesting.Calculator
+﻿namespace Mjcheetham.AppiumTesting.Calculator
 {
-    public interface ICalculatorStandardPage : IPage
+    public interface ICalculatorStandardPage
     {
         void PressPlus();
 

@@ -1,74 +1,65 @@
-﻿using System;
+﻿using Mjcheetham.AppiumTesting.AppModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Mjcheetham.AppiumTesting.Calculator.Uwp
+namespace Mjcheetham.AppiumTesting.Calculator.Windows
 {
-    public class UwpCalculatorStandardPage : ICalculatorStandardPage
+    public class UwpCalculatorStandardPage : Page<UwpCalculatorApp>, ICalculatorStandardPage
     {
-        private readonly UwpCalculatorApp app;
-
-        public UwpCalculatorStandardPage(UwpCalculatorApp app)
-        {
-            if (app == null)
-            {
-                throw new ArgumentNullException(nameof(app));
-            }
-
-            this.app = app;
-        }
+        public UwpCalculatorStandardPage(UwpCalculatorApp app) : base(app) { }
 
         #region ICalculatorStandardPage
 
         public void PressPlus()
         {
-            this.app.Driver.FindElementByAccessibilityId("plusButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("plusButton").Click();
         }
 
         public void PressSubtract()
         {
-            this.app.Driver.FindElementByAccessibilityId("minusButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("minusButton").Click();
         }
 
         public void PressMultiply()
         {
-            this.app.Driver.FindElementByAccessibilityId("multiplyButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("multiplyButton").Click();
         }
 
         public void PressDivide()
         {
-            this.app.Driver.FindElementByAccessibilityId("divideButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("divideButton").Click();
         }
 
         public void PressBackspace()
         {
-            this.app.Driver.FindElementByAccessibilityId("backSpaceButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("backSpaceButton").Click();
         }
 
         public void PressClear()
         {
-            this.app.Driver.FindElementByAccessibilityId("clearButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("clearButton").Click();
         }
 
         public void PressClearEntry()
         {
-            this.app.Driver.FindElementByAccessibilityId("clearEntryButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("clearEntryButton").Click();
         }
 
         public void PressEquals()
         {
-            this.app.Driver.FindElementByAccessibilityId("equalButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("equalButton").Click();
         }
 
         public void PressPlusMinus()
         {
-            this.app.Driver.FindElementByAccessibilityId("negateButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("negateButton").Click();
         }
 
         public void PressDecimal()
         {
-            this.app.Driver.FindElementByAccessibilityId("decimalSeparatorButton").Click();
+            this.App.Driver.FindElementByAccessibilityId("decimalSeparatorButton").Click();
         }
 
         public void EnterDigit(int digit)
@@ -79,7 +70,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Uwp
             }
 
             var id = $"num{digit}Button";
-            this.app.Driver.FindElementByAccessibilityId(id).Click();
+            this.App.Driver.FindElementByAccessibilityId(id).Click();
         }
 
         public void EnterNumber(int number)
@@ -133,7 +124,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Uwp
 
         public string GetDisplayString()
         {
-            return this.app.Driver.FindElementByAccessibilityId("CalculatorResults").Text;
+            return this.App.Driver.FindElementByAccessibilityId("CalculatorResults").Text;
         }
 
         #endregion
