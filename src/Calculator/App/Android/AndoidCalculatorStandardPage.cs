@@ -1,5 +1,6 @@
-﻿using System;
-using Mjcheetham.AppiumTesting.AppModel;
+﻿using Mjcheetham.AppiumTesting.AppModel;
+using OpenQA.Selenium.Appium.Android;
+using System;
 
 namespace Mjcheetham.AppiumTesting.Calculator.Android
 {
@@ -11,42 +12,40 @@ namespace Mjcheetham.AppiumTesting.Calculator.Android
 
         public void EnterDigit(int digit)
         {
-            throw new NotImplementedException();
-        }
+            if (digit < 0 || digit > 9)
+            {
+                throw new NotImplementedException($"'{digit}' is not a digit.");
+            }
 
-        public void EnterNumber(double number)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EnterNumber(decimal number)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EnterNumber(int number)
-        {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath($"//android.widget.Button[@text=\"{digit}\"]").Click();
         }
 
         public string GetDisplayString()
         {
-            throw new NotImplementedException();
+            return this.App.Driver.FindElementById("com.android.calculator2:id/formula").Text;
         }
 
         public decimal GetResult()
         {
-            throw new NotImplementedException();
+            string displayText = this.GetDisplayString();
+            decimal number;
+            if (decimal.TryParse(displayText, out number))
+            {
+                return number;
+            }
+
+            throw new InvalidOperationException("Display is not a numeric value");
         }
 
         public void PressBackspace()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"del\"]").Click();
         }
 
         public void PressClear()
         {
-            throw new NotImplementedException();
+            AndroidElement el =(AndroidElement)this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"del\"]");
+            el.Tap(1, 5);
         }
 
         public void PressClearEntry()
@@ -56,27 +55,27 @@ namespace Mjcheetham.AppiumTesting.Calculator.Android
 
         public void PressDecimal()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\".\"]").Click();
         }
 
         public void PressDivide()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"÷\"]").Click();
         }
 
         public void PressEquals()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"=\"]").Click();
         }
 
         public void PressMultiply()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"×\"]").Click();
         }
 
         public void PressPlus()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"+\"]").Click();
         }
 
         public void PressPlusMinus()
@@ -86,7 +85,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Android
 
         public void PressSubtract()
         {
-            throw new NotImplementedException();
+            this.App.Driver.FindElementByXPath("//android.widget.Button[@text=\"−\"]").Click();
         }
 
         #endregion

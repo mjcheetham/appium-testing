@@ -22,7 +22,7 @@ namespace Mjcheetham.AppiumTesting.AppModel
             {
                 if (disposing)
                 {
-                    this.Driver?.Close();
+                    this.Driver?.Quit();
                 }
 
                 this.isDisposed = true;

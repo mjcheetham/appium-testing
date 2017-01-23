@@ -14,21 +14,6 @@ namespace Mjcheetham.AppiumTesting.Calculator.iOS
             throw new NotImplementedException();
         }
 
-        public void EnterNumber(double number)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EnterNumber(decimal number)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EnterNumber(int number)
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetDisplayString()
         {
             throw new NotImplementedException();

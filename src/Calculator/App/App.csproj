@@ -67,6 +67,7 @@
     <Compile Include="Android\AndoidCalculatorStandardPage.cs" />
     <Compile Include="CalculatorAppBuilder.cs" />
     <Compile Include="CalculatorMode.cs" />
+    <Compile Include="CalculatorStandardPageExtensions.cs" />
     <Compile Include="ICalculatorApp.cs" />
     <Compile Include="ICalculatorStandardPage.cs" />
     <Compile Include="iOS\IosCalculatorApp.cs" />

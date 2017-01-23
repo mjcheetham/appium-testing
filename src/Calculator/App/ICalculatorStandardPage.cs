@@ -24,12 +24,6 @@
 
         void EnterDigit(int digit);
 
-        void EnterNumber(int number);
-
-        void EnterNumber(double number);
-
-        void EnterNumber(decimal number);
-
         decimal GetResult();
 
         string GetDisplayString();

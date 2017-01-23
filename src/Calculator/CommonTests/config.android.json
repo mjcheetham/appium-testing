@@ -4,7 +4,9 @@
   "commandTimeout": 60000,
   "elementSearchTimeout": 5000,
   "capabilities": {
-    "app": "com.apple.calculator",
-    "platformName": "Android"
+    "appPackage": "com.android.calculator2",
+    "appActivity": "com.android.calculator2.Calculator",
+    "platformName": "Android",
+    "deviceName": "donatello"
   }
 }

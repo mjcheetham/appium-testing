@@ -1,7 +1,5 @@
 ﻿using Mjcheetham.AppiumTesting.AppModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Mjcheetham.AppiumTesting.Calculator.Windows
@@ -73,38 +71,6 @@ namespace Mjcheetham.AppiumTesting.Calculator.Windows
             this.App.Driver.FindElementByAccessibilityId(id).Click();
         }
 
-        public void EnterNumber(int number)
-        {
-            IEnumerable<int> digits = Math.Abs(number).ToString().Select(DigitCharToInt);
-            this.EnterDigitSequence(digits);
-
-            if (number < 0)
-            {
-                this.PressPlusMinus();
-            }
-        }
-
-        public void EnterNumber(double number)
-        {
-            EnterNumber((decimal)number);
-        }
-
-        public void EnterNumber(decimal number)
-        {
-            string[] partsStr = Math.Abs(number).ToString().Split('.').ToArray();
-            IEnumerable<int> firstDigits = partsStr[0].Select(DigitCharToInt);
-            IEnumerable<int> secondDigits = partsStr[1].Select(DigitCharToInt);
-
-            this.EnterDigitSequence(firstDigits);
-            this.PressDecimal();
-            this.EnterDigitSequence(secondDigits);
-
-            if (number < 0)
-            {
-                this.PressPlusMinus();
-            }
-        }
-
         public decimal GetResult()
         {
             string displayText = this.GetDisplayString();
@@ -125,23 +91,6 @@ namespace Mjcheetham.AppiumTesting.Calculator.Windows
         public string GetDisplayString()
         {
             return this.App.Driver.FindElementByAccessibilityId("CalculatorResults").Text;
-        }
-
-        #endregion
-
-        #region Helpers
-
-        private static int DigitCharToInt(char digit)
-        {
-            return Convert.ToInt32(digit) - 48;
-        }
-
-        private void EnterDigitSequence(IEnumerable<int> digits)
-        {
-            foreach (int digit in digits)
-            {
-                this.EnterDigit(digit);
-            }
         }
 
         #endregion

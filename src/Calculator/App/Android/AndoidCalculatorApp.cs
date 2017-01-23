@@ -17,7 +17,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Android
 
         public CalculatorMode GetCurrentMode()
         {
-            throw new NotImplementedException();
+            return CalculatorMode.Standard;
         }
 
         public void PressAppMenuButton()
