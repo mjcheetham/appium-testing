@@ -30,6 +30,11 @@ namespace Mjcheetham.AppiumTesting.Configuration
 
         public string GetSecret(string secretName)
         {
+            if (string.IsNullOrWhiteSpace(secretName))
+            {
+                throw new ArgumentNullException(nameof(secretName));
+            }
+
             string value;
             if (this.data.TryGetValue(secretName, out value))
             {

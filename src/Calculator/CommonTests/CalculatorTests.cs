@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mjcheetham.AppiumTesting.Configuration;
+using System;
 using Xunit;
 
 namespace Mjcheetham.AppiumTesting.Calculator.Tests
@@ -6,19 +7,43 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
     public class CalculatorTests : IClassFixture<CalculatorAppBuilder>, IDisposable
     {
         private readonly ICalculatorApp app;
+        private readonly ISecretProvider secretProvider;
 
         public CalculatorTests(CalculatorAppBuilder appBuilder)
         {
-            app = appBuilder.AddJsonConfiguration("config.windows.json")
-                            .Build();
+            var vaultUrl = new Uri("https://mjcheetham-appiumtest-kv.vault.azure.net/");
+            string clientId = "4307c2fe-19d5-4c77-bdfd-cc47c29996eb";
+            string authCertThumbprint = "3f2a039a4bc39310d6aea920fb46839003517cdf";
 
-            if (app.GetCurrentMode() != CalculatorMode.Standard)
+            var certProvider = new LocalCertificateProvider();
+            var authCertificate = certProvider.FindCertificateByThumbprint(authCertThumbprint);
+            this.secretProvider = new AzureKeyVaultSecretProvider(vaultUrl, clientId, authCertificate);
+
+            this.app = appBuilder.AddJsonConfiguration("config.windows.json")
+                                 .Build();
+
+            if (this.app.GetCurrentMode() != CalculatorMode.Standard)
             {
-                app.SwitchMode(CalculatorMode.Standard);
+                this.app.SwitchMode(CalculatorMode.Standard);
             }
         }
 
-        [Fact]
+        [Fact(DisplayName = nameof(AddSecretNumbers))]
+        public void AddSecretNumbers()
+        {
+            int secretNumber1 = this.secretProvider.GetSecret<int>("testsecret1");
+            int secretNumber2 = this.secretProvider.GetSecret<int>("testsecret2");
+            int secretNumber3 = this.secretProvider.GetSecret<int>("testsecret3");
+
+            this.app.StandardPage.EnterNumber(secretNumber1);
+            this.app.StandardPage.PressPlus();
+            this.app.StandardPage.EnterNumber(secretNumber2);
+            this.app.StandardPage.PressEquals();
+            var result = this.app.StandardPage.GetResult();
+            Assert.Equal(secretNumber3, result);
+        }
+
+        [Fact(DisplayName = nameof(Addition))]
         public void Addition()
         {
             this.app.StandardPage.EnterDigit(7);
@@ -29,7 +54,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
             Assert.Equal(10, result);
         }
 
-        [Fact]
+        [Fact(DisplayName = nameof(Addition_Decimal))]
         public void Addition_Decimal()
         {
             this.app.StandardPage.EnterNumber(3.14);
@@ -40,7 +65,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
             Assert.Equal(6.28m, result, 2);
         }
 
-        [Theory]
+        [Theory(DisplayName = nameof(Subtraction))]
         [InlineData(5, 4, 1)]
         [InlineData(8, 8, 0)]
         [InlineData(8, 10, -2)]
@@ -55,7 +80,7 @@ namespace Mjcheetham.AppiumTesting.Calculator.Tests
         }
 
 
-        [Fact]
+        [Fact(DisplayName = nameof(Backspace))]
         public void Backspace()
         {
             this.app.StandardPage.EnterDigit(1);

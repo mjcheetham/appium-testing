@@ -2,7 +2,7 @@
 
 namespace Mjcheetham.AppiumTesting.Configuration
 {
-    class LocalCertificateProvider : ICertificateProvider
+    public class LocalCertificateProvider : ICertificateProvider
     {
         private readonly X509Store store;
 

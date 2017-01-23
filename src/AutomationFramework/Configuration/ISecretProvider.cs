@@ -1,6 +1,6 @@
 ﻿namespace Mjcheetham.AppiumTesting.Configuration
 {
-    interface ISecretProvider
+    public interface ISecretProvider
     {
         string GetSecret(string secretName);
     }
